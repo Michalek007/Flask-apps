@@ -28,7 +28,8 @@ class UserBp(BlueprintSingleton):
             if password != repeat_password:
                 return jsonify(message='Passwords are not the same!'), 408
             if login is None or password is None:
-                return jsonify(message='No value. Expected values for keys: \'login\', \'password\''), 400
+                return jsonify(
+                    message='No value. Expected values for keys: \'login\', \'password\', \'repeat_password\''), 400
 
         test_user = User.query.filter_by(username=login).first()
         if test_user:
