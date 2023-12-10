@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block src %}
+ <script>
+      function restart() {
+        fetch("{{url_for('config.restart')}}")
+          .then(response => response.json())
+          .then(data => {
+              document.getElementById("status").innerText = data["message"];
+          })
+          .catch(error => {
+            console.error(error);
+          });
+          setTimeout(() => {
+              location.reload();
+          }, 3000)
+      }
+      function kill() {
+        fetch("{{url_for('config.kill')}}")
+          .then(response => response.json())
+          .then(data => {
+              document.getElementById("status").innerText = data["message"];
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      }
+      function restart_client() {
+        fetch("{{url_for('config.restart_client')}}")
+          .then(response => response.json())
+          .then(data => {
+              document.getElementById("status").innerText = data["message"];
+          })
+          .catch(error => {
+            console.error(error);
+          });
+          setTimeout(() => {
+              location.reload();
+          }, 3000)
+      }
+      function kill_client() {
+        fetch("{{url_for('config.kill_client')}}")
+          .then(response => response.json())
+          .then(data => {
+              document.getElementById("status").innerText = data["message"];
+          })
+          .catch(error => {
+            console.error(error);
+          });
+          setTimeout(() => {
+              location.reload();
+          }, 3000)
+      }
+      function set_client_status() {
+        fetch("{{url_for('config.get_pid')}}")
+          .then(response => response.json())
+          .then(data => {
+              if (data["CLIENT"] === null){
+                document.getElementById("status").innerText = "Client is shut down. ";
+              }
+              else{
+                document.getElementById("status").innerText = "Client is running. ";
+              }
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      }
+      function logout() {
+        fetch("{{url_for('user.logout')}}")
+          .then(response => response.json())
+          .then(data => {
+              document.getElementById("status").innerText = data["message"];
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      }
+       function get_client_status(){
+        for(let i=0;i<2;i++){
+           fetch("{{url_for('config.get_client_status')}}")
+          .then(response => response.json())
+          .then(data => {
+              const container = document.getElementById("console");
+              if (data['status']){
+                  container.value += data['status'] + '\n';
+              }
+              else{
+                  i = 2;
+              }
+          })
+          .catch(error => {
+            console.error(error);
+          });
+        }
+       }
+     set_client_status();
+     setInterval(function() {
+        get_client_status();
+      }, 500);
+</script>
+{% endblock %}
+
+{% block body %}
+    <h1> Settings </h1>
+    <button class="button" onclick="restart()"> Restart service </button>
+    <button class="button" onclick="kill()"> Kill service </button>
+    <button class="button" onclick="logout()"> Logout </button>
+    <div class="white_text" id="client">
+        <button class="button" onclick="restart_client()"> Restart client </button>
+        <button class="button" onclick="kill_client()"> Kill client </button>
+    </div>
+    <div class="white_text" id="status"></div>
+    <div>
+        <label for="console"></label>
+        <textarea class="textarea" id="console" readonly="readonly" placeholder="Client output"></textarea>
+    </div>
+{% endblock %}

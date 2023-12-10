@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+<html lang="en">
+
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block menu %}
+    {{ super() }}
+{% endblock %}
+{% block src %}
+ <script>
+      function getData() {
+        fetch("{{url_for('hardware.performance')}}")
+          .then(response => response.json())
+          .then(data => {
+             const container = document.getElementById('data-container');
+             const cpu = data["cpu"]
+             const disk = data["disk"]
+             const virtual = data["virtual_memory"]
+            container.innerHTML = `
+            <div class="white_text">
+                <li>
+                    <h3>CPU:  </h3>
+                    <p>Usage: ${cpu["usage"]}</p>
+                    <p>Freq: ${cpu["freq"]}</p>
+                </li>
+                <li>
+                    <h3>Disk:  </h3>
+                    <p>Usage: ${disk["usage"]}</p>
+                    <p>Total: ${disk["total"]}</p>
+                    <p>Free: ${disk["free"]}</p>
+                    <p>Used: ${disk["used"]}</p>
+                </li>
+                <li>
+                    <h3>Virtual memory:  </h3>
+                    <p>Usage: ${virtual["usage"]}</p>
+                    <p>Total: ${virtual["total"]}</p>
+                    <p>Available: ${virtual["available"]}</p>
+                    <p>Used: ${virtual["used"]}</p>
+                </li>
+            </div>
+              `;
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      }
+      getData();
+      setInterval(function() {
+        getData();
+      }, 500);
+    </script>
+{% endblock %}
+{% block body %}
+<body>
+    <h1> Performance </h1>
+    <ul id="data-container"></ul>
+</body>
+{% endblock %}
+</html>

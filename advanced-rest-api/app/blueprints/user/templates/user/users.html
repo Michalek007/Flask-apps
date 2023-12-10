@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+<html lang="en">
+
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block menu %}
+    {{ super() }}
+{% endblock %}
+{% block src %}
+ <script>
+     function loggedUsers() {
+         fetch("{{url_for('user.logged_users')}}")
+          .then(response => response.json())
+          .then(data => {
+              const container = document.getElementById('data-container');
+            container.innerHTML = `
+            <div>
+                <li class="white_text">
+                    <h3> Logged users </h3>
+                    <p>${data["logged_users"]}</p>
+                </li>
+            </div>`;
+          })
+          .catch(error => {
+            console.error(error);
+          });
+     }
+      loggedUsers()
+    </script>
+{% endblock %}
+{% block body %}
+<body>
+    <h1> Users data </h1>
+    <ul id="data-container"></ul>
+</body>
+{% endblock %}
+</html>

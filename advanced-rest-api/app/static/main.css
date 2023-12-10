@@ -1,0 +1,111 @@
+h1 {
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 3vw;
+    font-family: D-Din,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    font-weight: bold;
+    /*color: #800002;*/
+    color: #d32f2f;
+}
+
+body {
+    margin: 50px;
+    text-align: left;
+    background: #3E3636;
+}
+
+.center{
+    text-align: center;
+}
+/* The navbar container */
+.navbar {
+  overflow: hidden;
+  background-color: #302B2B;
+}
+
+/* Navbar links */
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Links - change color on hover */
+.navbar a:hover {
+  background-color: #BBAEAE ;
+  color: black;
+}
+
+.black_text{
+    font-family: D-Din,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 39px;
+}
+
+.white_text{
+    font-family: D-Din,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    font-style: normal;
+    font-size: 16px;
+    /*font-weight: 700;*/
+    /*line-height: 39px;*/
+    /*-webkit-text-stroke: 1px black;*/
+    color: #F8F8FF;
+}
+
+input{
+    width: 316px;
+    height: 60px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+
+    background: #302B2B;
+    border: 1px solid #000000;
+    font-family: D-Din,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+}
+
+.button {
+    width: 316px;
+    height: 60px;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #302B2B;
+    color: #fff;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+    font-family: D-Din,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    }
+
+    .button:hover {
+      background-color: #383838;
+    }
+
+      .button.active {
+      background-color: #202020;
+    }
+
+    .button-container {
+      text-align: center;
+    }
+
+.textarea {
+    background-color: #302B2B;
+    color: wheat;
+    width: 1000px;
+    height: 360px;
+}

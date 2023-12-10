@@ -1,0 +1,8 @@
+__pycache__/
+/__pycache__/
+/venv/
+/.venv/
+/.pytest_cache/
+/.idea/
+logs/client_logs.log
+logs/service_logs.log

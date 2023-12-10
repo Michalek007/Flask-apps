@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block src %}
+ <script>
+      function getData() {
+        fetch("{{url_for('logs.get_logs', name='service')}}")
+          .then(response => response.json())
+          .then(data => {
+             const container = document.getElementById('data-container');
+              if (data["logs"].length < 2){
+                container.innerHTML = `
+                <div class="white_text">
+                    There are no service logs yet.
+                </div>`
+             }
+             for (let i = 0; i < data["logs"].length;i++){
+                const el = document.createElement("div");
+                el.innerHTML = `
+                <div class="white_text">
+                    ${data["logs"][i]}
+                </div>
+              `
+                container.appendChild(el);
+             }
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      }
+      getData();
+</script>
+{% endblock %}
+
+{% block body %}
+    <h1> Service logs  </h1>
+    <div id="data-container"></div>
+{% endblock %}
