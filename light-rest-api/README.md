@@ -60,6 +60,7 @@ Rest-api is dived into subdirectories which contains:
 * **database** - SQLAlchemy database, schemas, cli commands and data.db 
 * **tests** - tests for all service functionalities
 * **utils** - utility classes
+* **scripts** - Batch scripts used by service
 
 All configuration is in: `configuration.py`. 
 Configuration, requirements and run files are placed in the main directory.
