@@ -1,3 +1,4 @@
+""" Runs Flask app on development server. """
 import os
 
 from app import app, deploy_app_views

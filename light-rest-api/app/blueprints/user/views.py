@@ -8,7 +8,7 @@ from database.schemas import user_schema, users_schema, User
 @user.route('/register/', methods=['GET', 'POST'])
 def register():
     """ Allows to register new user.
-        Input args: login, password, repeat_password
+        Input args: login, password, repeat_password.
     """
     if request.method == 'GET':
         try:
@@ -50,7 +50,7 @@ def logout():
     return jsonify(message='Logged out.')
 
 
-@user.route("/protected/", methods=["GET"])
+@user.route('/protected/', methods=['GET'])
 @flask_login.login_required
 def protected():
     """ Returns currently logged users in service.
@@ -67,8 +67,8 @@ def protected():
 @user.route('/users/', methods=['GET'])
 def users(id: int = None):
     """ Returns user with given id or if not specified list of all users from database.
-        Input args: /id/
-        Output keys: Users/User {id, pw_hash, username}
+        Input args: /id/.
+        Output keys: Users/User {id, pw_hash, username}.
     """
     if id is None:
         users_list = User.query.all()

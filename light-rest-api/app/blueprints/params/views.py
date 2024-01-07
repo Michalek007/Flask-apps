@@ -13,8 +13,8 @@ from utils import DateUtil
 def params(params_id: int = None):
     """ Returns params with given id or if not specified list of all params from database.
         If given timestamp, returns list of params with later timestamp.
-        Input args: /id/, Timestamp
-        Output keys: performance {id, cpu_usage, disk_usage, memory_usage}
+        Input args: /id/, Timestamp.
+        Output keys: performance {id, cpu_usage, disk_usage, memory_usage}.
     """
     if params_id is None:
         timestamp = request.args.get('Timestamp')
@@ -72,7 +72,7 @@ def add_params():
 def delete_params(params_id: int = None):
     """ DELETE method.
         Delete params with given id or if given timestamp, deletes params with earlier timestamp.
-        Input args: /id/, Timestamp
+        Input args: /id/, Timestamp.
     """
     if params_id is None:
         timestamp = request.args.get('Timestamp')

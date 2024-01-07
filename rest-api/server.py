@@ -1,3 +1,4 @@
+""" Deploys Flask app as wsgi server. """
 from gevent.monkey import patch_all; patch_all()
 from gevent import pywsgi
 import os

@@ -1,7 +1,11 @@
+""" Deploys Flask app as wsgi server. """
 from gevent.monkey import patch_all; patch_all()
+from gevent import pywsgi
+import os
+
 from app import app, deploy_app_views
 from app.periodic_tasks import deploy_scheduler
-from gevent import pywsgi
+from configuration import Pid
 
 server_wsgi = pywsgi.WSGIServer(listener=(tuple(app.config['LISTENER'].values())), application=app)
 
@@ -11,6 +15,7 @@ def run(server):
 
 
 if __name__ == '__main__':
+    Pid.SERVICE = os.getpid()
     deploy_app_views()
     deploy_scheduler()
     run(server_wsgi)

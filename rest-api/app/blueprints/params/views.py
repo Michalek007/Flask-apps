@@ -9,7 +9,7 @@ from app.blueprints.params.params_bp import ParamsBp
 def params(params_id: int = None):
     """ Returns params with given id or if not specified list of all params from database.
         If given timestamp, returns list of params with later timestamp.
-        Input args: /id/, Timestamp
+        Input args: /id/, Timestamp.
         Output keys: performance {id, cpu_usage, disk_usage, memory_usage}
     """
     return ParamsBp().params(params_id=params_id)
@@ -29,7 +29,7 @@ def add_params():
 def delete_params(params_id: int = None):
     """ DELETE method.
         Delete params with given id or if given timestamp, deletes params with earlier timestamp.
-        Input args: /id/, Timestamp
+        Input args: /id/, Timestamp.
     """
     return ParamsBp().delete_params(params_id=params_id)
 
