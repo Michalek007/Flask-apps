@@ -28,3 +28,19 @@ class ServiceRequestsApiAdapter:
 
     def protected(self):
         return self.api.protected()
+
+    def get_logs(self, name: str):
+        response = self.api.get_logs(name=name)
+        err = self.err_monitor.request(response, f'Getting {name} logs')
+        if err:
+            self.err_monitor.report_error(client_error=err)
+            return None
+        return response
+
+    def delete_logs(self, name: str, timestamp):
+        response = self.api.delete_logs(name=name, timestamp=timestamp)
+        err = self.err_monitor.request(response, f'Deleting {name} logs')
+        if err:
+            self.err_monitor.report_error(client_error=err)
+            return False
+        return True

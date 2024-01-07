@@ -56,3 +56,9 @@ class ServiceRequestsApi:
 
     def set_client_status(self, status: str):
         return self.get("/set_client_status/", dict(status=status))
+
+    def get_logs(self, name: str):
+        return self.get(f"/get_logs/{name}/")
+
+    def delete_logs(self, name: str, timestamp):
+        return self.get(f"/delete_logs/{name}/", dict(timestamp=timestamp))

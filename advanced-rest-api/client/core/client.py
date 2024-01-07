@@ -37,7 +37,7 @@ class Client:
         # self.scheduler_jobs -> main_method will be called periodically (interval time defined in minutes)
 
         self.functionalities = [
-            # ComponentTypes.your_component
+            ComponentTypes.LogsHandler
         ]
 
         self.scheduler_jobs = [
