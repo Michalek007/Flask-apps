@@ -38,11 +38,13 @@ def deploy_app_views():
     from app.blueprints.params import params
     from app.blueprints.user import user
     from app.blueprints.config import config
+    from app.blueprints.details import details
 
     app.register_blueprint(auth)
     app.register_blueprint(params)
     app.register_blueprint(user)
     app.register_blueprint(config)
+    app.register_blueprint(details)
 
     from app.views import base
     print("App views deployed!")
