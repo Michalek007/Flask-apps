@@ -8,7 +8,7 @@ class DetailsClass(BlueprintSingleton):
     """ Implements views related to service detailed info."""
 
     @staticmethod
-    def get_dm_methods():
+    def get_service_methods():
         from app.blueprints.auth.views import login
         from app.blueprints.logs.views import get_logs, delete_logs
         from app.blueprints.user.views import logged_users, logout, protected
@@ -43,7 +43,7 @@ class DetailsClass(BlueprintSingleton):
                 doc.pop()
             return " ".join(doc)
 
-        methods = self.get_dm_methods()
+        methods = self.get_service_methods()
         api_methods = {method.__name__: format_doc(method) for method in methods}
         if not method:
             return jsonify(api_methods=api_methods)

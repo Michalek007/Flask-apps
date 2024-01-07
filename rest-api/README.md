@@ -63,7 +63,7 @@ Rest-api is dived into subdirectories which contains:
 * **lib_objects** - library objects 
 * **tests** - tests for all service functionalities
 * **utils** - utility classes
-* * **scripts** - Batch scripts used by service
+* **scripts** - Batch scripts used by service
 
 All configuration is in: `configuration.py`. 
 Configuration, requirements and run files are placed in the main directory.

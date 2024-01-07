@@ -1,13 +1,5 @@
 {% extends "base.html" %}
-<html lang="en">
 
-{% block head %}
-  {{ super() }}
-{% endblock %}
-
-{% block menu %}
-    {{ super() }}
-{% endblock %}
 {% block src %}
  <script>
       function getData() {
@@ -50,12 +42,10 @@
       setInterval(function() {
         getData();
       }, 500);
-    </script>
+</script>
 {% endblock %}
+
 {% block body %}
-<body>
     <h1> Performance </h1>
     <ul id="data-container"></ul>
-</body>
 {% endblock %}
-</html>

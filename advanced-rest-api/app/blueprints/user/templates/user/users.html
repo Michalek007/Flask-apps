@@ -1,13 +1,5 @@
 {% extends "base.html" %}
-<html lang="en">
 
-{% block head %}
-  {{ super() }}
-{% endblock %}
-
-{% block menu %}
-    {{ super() }}
-{% endblock %}
 {% block src %}
  <script>
      function loggedUsers() {
@@ -28,12 +20,10 @@
           });
      }
       loggedUsers()
-    </script>
+</script>
 {% endblock %}
+
 {% block body %}
-<body>
     <h1> Users data </h1>
     <ul id="data-container"></ul>
-</body>
 {% endblock %}
-</html>

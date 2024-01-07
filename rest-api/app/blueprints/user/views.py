@@ -7,7 +7,7 @@ from app.blueprints.user.user_bp import UserBp
 @user.route('/register/', methods=['GET', 'POST'])
 def register():
     """ Allows to register new user.
-        Input args: login, password, repeat_password
+        Input args: login, password, repeat_password.
     """
     return UserBp().register()
 
@@ -19,7 +19,7 @@ def logout():
     return UserBp().logout()
 
 
-@user.route("/protected/", methods=["GET"])
+@user.route('/protected/', methods=['GET'])
 @flask_login.login_required
 def protected():
     """ Returns currently logged users in service.
@@ -32,8 +32,8 @@ def protected():
 @user.route('/users/', methods=['GET'])
 def users(user_id: int = None):
     """ Returns user with given id or if not specified list of all users from database.
-        Input args: /id/
-        Output keys: Users/User {id, pw_hash, username}
+        Input args: /id/.
+        Output keys: Users/User {id, pw_hash, username}.
     """
     return UserBp().users(user_id=user_id)
 

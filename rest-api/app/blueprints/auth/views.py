@@ -28,7 +28,7 @@ def base():
 @auth.route('/login/', methods=['GET', 'POST'])
 def login():
     """ Allows to log into service.
-        Input args: login, password
+        Input args: login, password.
         If logging was successful you will be redirected to url:
         GET method -> /protected/
         POST method -> /logged_in/

@@ -48,7 +48,6 @@ def run(server: pywsgi.WSGIServer):
     return server.serve_forever()
 
 
-Pid.SERVICE = os.getpid()
-
 if __name__ == '__main__':
+    Pid.SERVICE = os.getpid()
     run(server_wsgi)
