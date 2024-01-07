@@ -34,6 +34,15 @@ def delete_params(params_id: int = None):
     return ParamsBp().delete_params(params_id=params_id)
 
 
+@bp_params.route('/update_params/<int:params_id>/', methods=['PUT'])
+def update_params(params_id: int = None):
+    """ PUT method.
+        Updates params with given id.
+        Input args: MemoryUsage, CpuUsage, DiskUsage.
+    """
+    return ParamsBp().update_params(params_id=params_id)
+
+
 @bp_params.route('/performance/', methods=['GET'])
 def performance():
     """ Collects computer performance data.

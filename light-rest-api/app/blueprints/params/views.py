@@ -108,6 +108,31 @@ def delete_params(params_id: int = None):
         return jsonify(message='There are no parameters with that id'), 404
 
 
+@bp_params.route('/update_params/<int:params_id>/', methods=['PUT'])
+def update_params(params_id: int = None):
+    """ PUT method.
+        Updates params with given id.
+        Input args: MemoryUsage, CpuUsage, DiskUsage.
+    """
+    if params_id is None:
+        return jsonify(message='There is no note with that id'), 404
+    memory_usage = request.args.get('MemoryUsage')
+    cpu_usage = request.args.get('CpuUsage')
+    disk_usage = request.args.get('DiskUsage')
+
+    if memory_usage is None or cpu_usage is None or disk_usage is None:
+        return jsonify(message='Missing value. Expected args: MemoryUsage, CpuUsage, DiskUsage'), 400
+    parameters = Performance.query.filter_by(id=params_id).first()
+    if parameters:
+        parameters.memory_usage = memory_usage
+        parameters.cpu_usage = cpu_usage
+        parameters.disk_usage = disk_usage
+        current_app.config.get('db').session.commit()
+        return jsonify(message='Updated parameters from ' + parameters.timestamp), 202
+    else:
+        return jsonify(message='There are no parameters with that id'), 404
+
+
 @bp_params.route('/performance/', methods=['GET'])
 def performance():
     """ Collects computer performance data.
