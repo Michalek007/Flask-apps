@@ -38,4 +38,5 @@ def db_init():
     admin = User(username='admin', pw_hash=bcrypt.generate_password_hash('admin'))
 
     db.session.add(admin)
+    db.session.commit()
     print('Database seeded!')

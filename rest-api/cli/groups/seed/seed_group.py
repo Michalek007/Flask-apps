@@ -11,8 +11,9 @@ class SeedGroup(BaseGroup):
 
     def init(self):
         admin = User(username='admin', pw_hash=self.bcrypt.generate_password_hash('admin'))
-
+           
         self.db.session.add(admin)
+        self.db.session.commit()
         print('Database seeded!')
 
     def users(self):
