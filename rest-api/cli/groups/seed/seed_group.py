@@ -17,9 +17,9 @@ class SeedGroup(BaseGroup):
         print('Database seeded!')
 
     def users(self):
-        user1 = User(username='test1', pw_hash=bcrypt.generate_password_hash('test'))
-        user2 = User(username='test2', pw_hash=bcrypt.generate_password_hash('test'))
-        user3 = User(username='test3', pw_hash=bcrypt.generate_password_hash('test'))
+        user1 = User(username='test1', pw_hash=self.bcrypt.generate_password_hash('test'))
+        user2 = User(username='test2', pw_hash=self.bcrypt.generate_password_hash('test'))
+        user3 = User(username='test3', pw_hash=self.bcrypt.generate_password_hash('test'))
 
         self.db.session.add(user1)
         self.db.session.add(user2)
