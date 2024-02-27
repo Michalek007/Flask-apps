@@ -4,22 +4,25 @@ from gevent.monkey import patch_all; patch_all()
 from gevent import pywsgi
 import logging
 import os
+from pathlib import Path
 
 from app import create_app
 from configuration import Pid, Config
 
 
-if sys.executable != Config.BASEDIR + '\\.venv\\Scripts\\python.exe':
-    sys.stdout = sys.stderr = open(os.devnull, "w")
+if sys.executable != str(Path(Config.BASEDIR + '/.venv/Scripts/python.exe')):
+    sys.stdout = sys.stderr = open(os.devnull, 'w')
 
 app = create_app()
-server_wsgi = pywsgi.WSGIServer(listener=("0.0.0.0", Config.LISTENER["port"]), application=app)
+app.config.update({'EXECUTABLE': sys.executable})
+if sys.executable == str(Path(Config.BASEDIR + '/.venv/Scripts/python.exe')):
+    app.config.update({'RUN_FILE': Path(Config.BASEDIR + '/run.bat')})
+
+server_wsgi = pywsgi.WSGIServer(listener=('0.0.0.0', Config.LISTENER['port']), application=app)
 
 
 class StreamToLogger(object):
-    """
-    Fake file-like stream object that redirects writes to a logger instance.
-    """
+    """ Fake file-like stream object that redirects writes to a logger instance. """
 
     def __init__(self, logger, log_level=logging.ERROR):
         self.logger = logger

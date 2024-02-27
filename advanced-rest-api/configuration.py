@@ -3,6 +3,7 @@ from collections import namedtuple
 import json
 import os
 import subprocess
+from pathlib import Path
 
 
 class Config(object):
@@ -22,10 +23,14 @@ class Config(object):
     BASEDIR = os.path.abspath(os.path.dirname(__file__))
     COMPUTER_NAME = subprocess.Popen('hostname', shell=True, stdout=subprocess.PIPE).stdout.read().decode()
     COMPUTER_NAME = COMPUTER_NAME.replace('\r', '').replace('\n', '')
-    CONFIG_FILE = BASEDIR + '\\config.json'
-    SERVICE_LOGS_FILE = 'logs\\service_logs.log'
-    CLIENT_LOGS_FILE = 'logs\\client_logs.log'
+    CONFIG_FILE = Path(BASEDIR + '/config.json')
+    SERVICE_LOGS_FILE = Path('logs/service_logs.log')
+    CLIENT_LOGS_FILE = Path('logs/client_logs.log')
     LOGS_FORMAT = '%(asctime)s %(levelname)s: %(message)s'
+    EXECUTABLE = None
+    RUN_FILE = Path(BASEDIR + '/runw.bat')
+    CLIENT_RUN_FILE = Path(BASEDIR + '/run_client.py')
+    RESTART_SCRIPT = Path(BASEDIR + '/scripts/restartService.bat')
 
     @staticmethod
     def get_project_details():
@@ -38,6 +43,7 @@ class Config(object):
 class DevelopmentConfig(Config):
     DEBUG = True
     LOGIN_DISABLED = True
+    RUN_FILE = Path(Config.BASEDIR + '/runDevelopmentServer.bat')
 
 
 class ProductionConfig(Config):

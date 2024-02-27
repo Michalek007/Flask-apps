@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from configuration import Config
 
 
@@ -8,7 +10,11 @@ class FilesManagement:
     def __init__(self, file_name, base_dir=Config.BASEDIR):
         self.file_name = file_name
         self.base_dir = base_dir
-        self.file = f'{self.base_dir}\\{self.file_name}'
+
+        if self.base_dir:
+            self.file = Path(f'{self.base_dir}/{self.file_name}')
+        else:
+            self.file = self.file_name
         self.data = []
 
         self._set_data()

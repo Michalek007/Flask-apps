@@ -44,8 +44,8 @@ class ConfigClass(BlueprintSingleton):
 
     def restart(self):
         self.kill_dm()
-        restart_script = f'"{current_app.config.get("BASEDIR")}\\scripts\\restartService.bat"'
-        run_file = f'"{current_app.config.get("BASEDIR")}\\runw.bat"'
+        restart_script = f'"{current_app.config.get("RESTART_SCRIPT")}"'
+        run_file = f'"{current_app.config.get("RUN_FILE")}"'
         self.subprocess.run(f'start {restart_script} {run_file}', stdout=None, stderr=None)
         return jsonify(message='Service is restarting!')
 
@@ -58,10 +58,10 @@ class ConfigClass(BlueprintSingleton):
 
     def restart_client(self):
         self.process_util.task_kill(pid=Pid.CLIENT)
-        executable = f'{current_app.config.get("BASEDIR")}\\.venv\\Scripts\\pythonw.exe'
-        client_run_file = 'run_client.py'
+        executable = current_app.config.get("EXECUTABLE")
+        client_run_file = current_app.config.get("CLIENT_RUN_FILE")
         self.subprocess.run(f'{executable} {client_run_file}', stdout=None, stderr=None)
-        return jsonify(message="Client is restarting!")
+        return jsonify(message='Client is restarting!')
 
     def set_client_status(self):
         status = request.args.get('status')
