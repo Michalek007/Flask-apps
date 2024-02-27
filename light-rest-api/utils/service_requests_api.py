@@ -9,8 +9,8 @@ class ServiceRequestsApi:
         Contains methods for specific request with same name as endpoint.
         Authorisation is handled via bearer token.
     """
-    def __init__(self, host=Config.LISTENER["host"], port=Config.LISTENER["port"], bearer_token=Config.TOKEN):
-        self.headers = {"Authorization": f"Bearer {bearer_token}"}
+    def __init__(self, host=Config.LISTENER['host'], port=Config.LISTENER['port'], bearer_token=Config.TOKEN):
+        self.headers = {'Authorization': f'Bearer {bearer_token}'}
         self.server_name = f'http://{host}:{port}'
 
     def post(self, url: str, params: dict = None):

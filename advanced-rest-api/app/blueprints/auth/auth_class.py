@@ -106,7 +106,7 @@ class AuthClass(BlueprintSingleton):
             return jsonify(message=output[0]), output[1]
         if self.has_acces(login):
             self.log_user(login)
-            if request.method == "POST":
+            if request.method == 'POST':
                 return redirect(url_for('auth.logged_in'))
             return redirect(url_for('user.protected'))
 

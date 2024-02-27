@@ -9,8 +9,8 @@ class ServiceRequestsApi:
         Contains methods for specific request with same name as endpoint.
         Authorisation is handled via bearer token.
     """
-    def __init__(self, host=Config.LISTENER["host"], port=Config.LISTENER["port"], bearer_token=Config.TOKEN):
-        self.headers = {"Authorization": f"Bearer {bearer_token}"}
+    def __init__(self, host=Config.LISTENER['host'], port=Config.LISTENER['port'], bearer_token=Config.TOKEN):
+        self.headers = {'Authorization': f'Bearer {bearer_token}'}
         self.server_name = f'http://{host}:{port}'
 
     def post(self, url: str, params: dict = None):
@@ -46,19 +46,19 @@ class ServiceRequestsApi:
         return response
 
     def set_pid(self, pid):
-        return self.post("/set_pid/", dict(client=pid))
+        return self.post('/set_pid/', dict(client=pid))
 
     def get_pid(self):
-        return self.get("/get_pid/")
+        return self.get('/get_pid/')
 
     def protected(self):
-        return self.get("/protected/")
+        return self.get('/protected/')
 
     def set_client_status(self, status: str):
-        return self.get("/set_client_status/", dict(status=status))
+        return self.get('/set_client_status/', dict(status=status))
 
     def get_logs(self, name: str):
-        return self.get(f"/get_logs/{name}/")
+        return self.get(f'/get_logs/{name}/')
 
     def delete_logs(self, name: str, timestamp):
-        return self.get(f"/delete_logs/{name}/", dict(timestamp=timestamp))
+        return self.get(f'/delete_logs/{name}/', dict(timestamp=timestamp))

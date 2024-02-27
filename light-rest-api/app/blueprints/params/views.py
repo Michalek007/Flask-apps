@@ -115,7 +115,7 @@ def update_params(params_id: int = None):
         Input args: MemoryUsage, CpuUsage, DiskUsage.
     """
     if params_id is None:
-        return jsonify(message='There is no note with that id'), 404
+        return jsonify(message='There are no params with that id'), 404
     memory_usage = request.args.get('MemoryUsage')
     cpu_usage = request.args.get('CpuUsage')
     disk_usage = request.args.get('DiskUsage')

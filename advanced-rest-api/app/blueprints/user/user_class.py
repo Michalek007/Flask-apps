@@ -14,7 +14,7 @@ class UserClass(BlueprintSingleton):
         try:
             user_id = flask_login.current_user.id
         except AttributeError:
-            return jsonify(logged_user="Anonymous user has no id!")
+            return jsonify(logged_user='Anonymous user has no id!')
         return jsonify(logged_user=user_id)
 
     def logout(self):

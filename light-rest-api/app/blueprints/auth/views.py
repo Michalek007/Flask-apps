@@ -76,7 +76,7 @@ def login():
         user = User()
         user.id = login
         flask_login.login_user(user)
-        if request.method == "POST":
+        if request.method == 'POST':
             return redirect(url_for('auth.logged_in'))
         return redirect(url_for('user.protected'))
 

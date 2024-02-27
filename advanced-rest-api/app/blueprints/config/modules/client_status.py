@@ -18,7 +18,7 @@ class ClientStatus:
 
     def get(self):
         """ Returns first item from status_stream list, and then removes it
-            or None if stream is empty
+            or None if stream is empty.
         """
         if not self.status_stream:
             return None

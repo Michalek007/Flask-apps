@@ -38,4 +38,4 @@ class HardwareClass(BlueprintSingleton):
 
     # gui views
     def stats(self):
-        return render_template("hardware/stats.html")
+        return render_template('hardware/stats.html')
