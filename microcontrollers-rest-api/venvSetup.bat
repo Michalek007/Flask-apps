@@ -15,5 +15,3 @@ set PIPENV_VENV_IN_PROJECT=1
 
 :: Create virtual environment if not already exists, install all packages defined in pipfile
 py -m pipenv install
-
-call "run.bat"
